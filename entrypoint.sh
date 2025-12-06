@@ -1,10 +1,13 @@
 #!/bin/sh
-# Establece la variable PLUGINS con saltos de línea reales usando printf
-echo "starting server"
+set -e
 
-export PLUGINS="$(printf '%s\n%s' \
+echo "Starting Minecraft server with Geyser + Floodgate..."
+
+# La variable PLUGINS con saltos de línea reales
+export PLUGINS="$(printf '%s\n%s\n' \
   'https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot' \
-  'https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot')"
+  'https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot'
+)"
 
-# Ejecuta el comando por defecto (CMD) definido en la imagen base
-exec "$@"
+# Llamar al entrypoint original de itzg/minecraft-server
+exec /start
